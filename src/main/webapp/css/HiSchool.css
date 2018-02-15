@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit:200,400&subset=thai');
+
+.bg-hischool{
+    background-color: rgba(0, 155, 141, 1);
+}
+
+.btn-secondary{
+    border-color: rgba(0, 155, 141, 1);
+    background-color: #FFFFFF;
+    color: rgba(0, 155, 141, 1);
+    margin-top: 2%
+}
+
+.Top-Margin{
+    margin-top: 4%;
+}
+
+body{
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Kanit', sans-serif;
+}
+
+.profilepic{
+    width: 200px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-details{
+    font-size: 14pt;
+}
+
+.profile-label{
+    font-size: 8pt;
+    font-weight: 200;
+    color: rgba(0, 155, 141, 1);
+}
+
+.profile-subject{
+    font-size: 16pt;
+    color: rgba(0, 155, 141, 1);
+}
+
+.profile-top{
+    margin-top: 2%;
+}
+
+h4{
+    font-weight: 200;
+}
