@@ -1,5 +1,41 @@
 @import url('https://fonts.googleapis.com/css?family=Kanit:200,400&subset=thai');
 
+.bg-grey{
+    background-color: #EEEEEE;
+}
+
+.btn-fullwidth{
+    display: block;
+    width: 95%;
+    border-color: rgba(0, 155, 141, 1);
+    background-color: #FFFFFF;
+    color: rgba(0, 155, 141, 1);
+    margin-top: 2%;
+}
+
+.btn-fullwidth:hover{
+    border-color: rgba(0, 155, 141, 1);
+    background-color: rgba(0, 155, 141, 1);
+    color: #FFFFFF;
+}
+
+.btn-fullwidth-dropdown{
+    display: block;
+    width: 95%;
+    border-color: rgba(0, 155, 141, 1);
+    background-color: #FFFFFF;
+    color: rgba(0, 155, 141, 1);
+    margin-top: 2%;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+}
+
+.btn-fullwidth-dropdown:hover{
+    background-color: rgba(0, 155, 141, 1);
+    color: #FFFFFF;
+}
+
 .bg-hischool{
     background-color: rgba(0, 155, 141, 1);
 }
@@ -27,6 +63,9 @@ body{
     border-radius: 50%;
     margin-left: auto;
     margin-right: auto;
+    border-color: #FFFFFF;
+    border-width: 10%;
+    border-style: solid;
 }
 
 .profile-details{
