@@ -5,9 +5,13 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class Teacher {
     int t_no;
-    int national_id;
+    String national_id;
     String t_name;
     String t_lastname;
     String gender;
@@ -19,7 +23,7 @@ public class Teacher {
     public Teacher() {
     }
     
-    public Teacher(int t_no, int national_id, String t_name, String t_lastname, String gender, String Address, String tel, String email, int r_no) {
+    public Teacher(int t_no, String national_id, String t_name, String t_lastname, String gender, String Address, String tel, String email, int r_no) {
         this.t_no = t_no;
         this.national_id = national_id;
         this.t_name = t_name;
@@ -39,11 +43,11 @@ public class Teacher {
         this.t_no = t_no;
     }
 
-    public int getNational_id() {
+    public String getNational_id() {
         return national_id;
     }
 
-    public void setNational_id(int national_id) {
+    public void setNational_id(String national_id) {
         this.national_id = national_id;
     }
 
@@ -103,5 +107,22 @@ public class Teacher {
         this.r_no = r_no;
     }
    
-    
+    public Teacher getProfile(int no){
+        String SQL = "select * from hi_school.Teacher where t_no = ?";
+        Connection con = null;
+        Teacher teacher = new Teacher() ;
+        try {
+            ConnectionBuilder connect = new ConnectionBuilder();
+            con = connect.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, no);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                teacher = new Teacher(rs.getInt("T_no"), rs.getString("National_Id"), rs.getString("T_Name"), rs.getString("T_Lastname"), rs.getString("Gender"), rs.getString("Address"), rs.getString("Tel"), rs.getString("Email"), rs.getInt("R_No"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return teacher ;
+    }
 }
