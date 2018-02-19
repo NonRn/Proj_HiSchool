@@ -99,9 +99,33 @@ public class Teach {
         return taskNo;
     }
     
+    public int[] getRoomBySubjectAndTeacher(int s_no, int t_no){
+        Connection con = null;
+        String SQL = "Select r_no From Teach Where s_no = ? and t_no = ?";
+        int roomNo[] = new int[10];
+        try {
+            ConnectionBuilder connect = new ConnectionBuilder();
+            con = connect.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, s_no);
+            ps.setInt(2, t_no);
+            ResultSet rs = ps.executeQuery();
+            int index = 0;
+            while(rs.next()){
+                roomNo[index] = rs.getInt("r_no");
+                index++;
+            }
+               
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return roomNo;
+    }
+    
     public static void main(String[] args) {
         Teach t = new Teach();
-        int [] forLoop = t.getSubjectByTeacher(10001);
+        int [] forLoop = t.getRoomBySubjectAndTeacher(300001,10006);
         for(int i : forLoop){
             System.out.println(i);
         }
