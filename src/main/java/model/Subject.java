@@ -5,19 +5,23 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Meen
  */
 public class Subject {
     int s_no;
-    int s_name;
+    String s_name;
     int credit;
 
     public Subject() {
     }
 
-    public Subject(int s_no, int s_name, int credit) {
+    public Subject(int s_no, String s_name, int credit) {
         this.s_no = s_no;
         this.s_name = s_name;
         this.credit = credit;
@@ -31,11 +35,11 @@ public class Subject {
         this.s_no = s_no;
     }
 
-    public int getS_name() {
+    public String getS_name() {
         return s_name;
     }
 
-    public void setS_name(int s_name) {
+    public void setS_name(String s_name) {
         this.s_name = s_name;
     }
 
@@ -47,5 +51,22 @@ public class Subject {
         this.credit = credit;
     }
     
-    
+    public Subject getSubjectById(int subject_No){
+        Subject subject = null ;
+        String SQL = "select * from hi_school.Subject where s_no = ?";
+        Connection con = null;
+        try {
+            ConnectionBuilder connect = new ConnectionBuilder();
+            con = connect.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, subject_No);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                subject = new Subject(rs.getInt("s_no"), rs.getString("s_name"), rs.getInt("credit"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return subject ;
+    }
 }
