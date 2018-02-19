@@ -1,5 +1,6 @@
 /target
 /nb-configuration.xml
+/src/main/resources/db-connection.properties
 
 ### Java ###
 # Compiled class file
