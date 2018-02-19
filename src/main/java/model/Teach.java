@@ -5,6 +5,11 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 /**
  *
  * @author Meen
@@ -47,5 +52,37 @@ public class Teach {
         this.r_no = r_no;
     }
     
+    public  int[] getSubjectByTeacher(int t_no){
+        Connection con = null;
+        String SQL = "Select s_no From Teach Where t_no=?";
+        int subjectNo [] = new int[10];
+        try {
+            ConnectionBuilder connect = new ConnectionBuilder();
+            con = connect.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, t_no);
+            ResultSet rs = ps.executeQuery();
+            int index = 0;
+            while(rs.next()){
+                subjectNo[index] = rs.getInt("s_no");
+                index++;
+            }
+               
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return subjectNo;
+    }
     
+    public static void main(String[] args) {
+        Teach t = new Teach();
+        int [] forLoop = t.getSubjectByTeacher(10001);
+        for(int i : forLoop){
+            System.out.println(i);
+        }
+        
+        
+        
+    }
 }
