@@ -75,14 +75,35 @@ public class Teach {
         return subjectNo;
     }
     
+    public int[] getTaskByTeach(int r_no, int s_no){
+        Connection con = null;
+        String SQL = "Select task_no From Task t join Category c on c.c_no = t.c_no Where t.r_no=? and c.s_no = ?";
+        int taskNo[] = new int[10];
+        try {
+            ConnectionBuilder connect = new ConnectionBuilder();
+            con = connect.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, r_no);
+            ps.setInt(2, s_no);
+            ResultSet rs = ps.executeQuery();
+            int index = 0;
+            while(rs.next()){
+                taskNo[index] = rs.getInt("task_no");
+                index++;
+            }
+               
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return taskNo;
+    }
+    
     public static void main(String[] args) {
         Teach t = new Teach();
         int [] forLoop = t.getSubjectByTeacher(10001);
         for(int i : forLoop){
             System.out.println(i);
         }
-        
-        
-        
     }
 }
