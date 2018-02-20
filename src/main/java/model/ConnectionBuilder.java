@@ -5,8 +5,9 @@
  */
 package model;
 
-import com.mysql.jdbc.Connection;
+
 import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
