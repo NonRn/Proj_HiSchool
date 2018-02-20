@@ -11,13 +11,12 @@ package model;
  */
 public class Task {
     int task_No;
-    int task_Name;
-    int deadline;
+    String task_Name;
+    String deadline;
     int score;
-    int description;
+    String description;
     int c_No;
 
-    
     public int getTask_No() {
         return task_No;
     }
@@ -26,19 +25,19 @@ public class Task {
         this.task_No = task_No;
     }
 
-    public int getTask_Name() {
+    public String getTask_Name() {
         return task_Name;
     }
 
-    public void setTask_Name(int task_Name) {
+    public void setTask_Name(String task_Name) {
         this.task_Name = task_Name;
     }
 
-    public int getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(int deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 
@@ -50,11 +49,11 @@ public class Task {
         this.score = score;
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -65,5 +64,8 @@ public class Task {
     public void setC_No(int c_No) {
         this.c_No = c_No;
     }
+
+    
+    
     
 }
