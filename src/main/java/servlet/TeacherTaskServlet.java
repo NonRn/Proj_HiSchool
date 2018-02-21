@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Room;
 import model.Subject;
+import model.Task;
 import model.Teach;
 
 /**
@@ -35,30 +36,52 @@ public class TeacherTaskServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        if (request.getParameter("subjectslist")== null){
-            ArrayList<Subject> subs = new ArrayList<Subject>();
-            int subNo[] = Teach.getSubjectByTeacher(10006);
+        ArrayList<Subject> subs = new ArrayList<Subject>();
+        int subNo[] = Teach.getSubjectByTeacher(10006);
 //        int roomNo[] = Teach.getRoomBySubjectAndTeacher(0, 0);
-            Subject s = new Subject();
-            for (int i : subNo) {
-                if (i != 0) {
-                    subs.add(s.getSubjectById(i));
-                }
+        Subject s = new Subject();
+        for (int i : subNo) {
+            if (i != 0) {
+                subs.add(s.getSubjectById(i));
             }
-            request.setAttribute("subject", subs);
-        } else {
+        }
+        request.setAttribute("subject", subs);
+        if (request.getParameter("subjectslist") != null || request.getParameter("subjectSelect") != null) {
             ArrayList<Room> rooms = new ArrayList<Room>();
-            int roomNo[] = Teach.getRoomBySubjectAndTeacher(Integer.parseInt(request.getParameter("subjectslist")),10006);
+            int roomNo[] ;
+            if (request.getParameter("subjectSelect") == null)
+                roomNo = Teach.getRoomBySubjectAndTeacher(Integer.parseInt(request.getParameter("subjectslist")), 10006);
+            else 
+                roomNo = Teach.getRoomBySubjectAndTeacher(Integer.parseInt(request.getParameter("subjectSelect")), 10006);
             Room r = new Room();
             for (int j : roomNo) {
                 if (j != 0) {
                     rooms.add(r.getRoomById(j));
                 }
             }
+            String subSelect = request.getParameter("subjectslist");
+            request.setAttribute("subSelect", subSelect);
             request.setAttribute("room", rooms);
         }
+        if (request.getParameter("roomslist") != null) {
+            ArrayList<Task> tasks = new ArrayList<Task>();
+            int taskNo[] = Teach.getTaskByTeach(Integer.parseInt(request.getParameter("roomslist")), Integer.parseInt(request.getParameter("subjectSelect")));
+            Task t = new Task();
+            String subSelect = request.getParameter("subjectSelect");
+            String roomSelect = request.getParameter("roomslist");
+            System.out.println("subSe : " + subSelect);
+            System.out.println("roomSe : " + roomSelect);
+            for (int k : taskNo) {
+                if (k != 0) {
+                    tasks.add(t.getTaskByTaskNo(k));
+                }
+            }
+            request.setAttribute("subSelect", subSelect);
+            request.setAttribute("roomSelect", roomSelect);
+            request.setAttribute("task", tasks);
+        }
         getServletContext().getRequestDispatcher("/TaskList.jsp").forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
