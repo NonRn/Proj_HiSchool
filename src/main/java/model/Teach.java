@@ -52,7 +52,7 @@ public class Teach {
         this.r_no = r_no;
     }
     
-    public  int[] getSubjectByTeacher(int t_no){
+    public static int[] getSubjectByTeacher(int t_no){
         Connection con = null;
         String SQL = "Select s_no From Teach Where t_no=?";
         int subjectNo [] = new int[10];
@@ -75,7 +75,7 @@ public class Teach {
         return subjectNo;
     }
     
-    public int[] getTaskByTeach(int r_no, int s_no){
+    public static int[] getTaskByTeach(int r_no, int s_no){
         Connection con = null;
         String SQL = "Select task_no From Task t join Category c on c.c_no = t.c_no Where t.r_no=? and c.s_no = ?";
         int taskNo[] = new int[10];
@@ -99,7 +99,7 @@ public class Teach {
         return taskNo;
     }
     
-    public int[] getRoomBySubjectAndTeacher(int s_no, int t_no){
+    public static int[] getRoomBySubjectAndTeacher(int s_no, int t_no){
         Connection con = null;
         String SQL = "Select r_no From Teach Where s_no = ? and t_no = ?";
         int roomNo[] = new int[10];
@@ -121,13 +121,5 @@ public class Teach {
         }
         
         return roomNo;
-    }
-    
-    public static void main(String[] args) {
-        Teach t = new Teach();
-        int [] forLoop = t.getRoomBySubjectAndTeacher(300001,10006);
-        for(int i : forLoop){
-            System.out.println(i);
-        }
     }
 }

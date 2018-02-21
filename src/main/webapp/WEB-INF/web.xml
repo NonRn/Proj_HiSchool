@@ -4,9 +4,17 @@
         <servlet-name>TeacherHome</servlet-name>
         <servlet-class>servlet.TeacherHomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeacherTaskServlet</servlet-name>
+        <servlet-class>servlet.TeacherTaskServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TeacherHome</servlet-name>
         <url-pattern>/TeacherHome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeacherTaskServlet</servlet-name>
+        <url-pattern>/TeacherTaskServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
